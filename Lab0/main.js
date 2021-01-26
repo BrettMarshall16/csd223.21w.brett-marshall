@@ -9,9 +9,18 @@ setInterval(function () {
 }, 2000);
 
 function add() {
-  var thediv = document.getElementById("emojis");
-  var emoji = document.getElementById("text").value;
+  const thediv = document.getElementById("emojis");
+  const emoji = document.getElementById("text").value;
   if (emoji == ":)") {
+    // How about a function like this:
+    // function makeEmoji(emoji) { 
+    //     const newSpan = document.createElement("span");
+    //     thediv.appendChild(newSpan);
+    //     newSpan.innerHTML = emoji;   
+    // }
+    // Then call it like this:
+    // makeEmoji("&#128512");
+    // Save yourself some typing!
     let newSpan = document.createElement("span");
     thediv.appendChild(newSpan);
     newSpan.innerHTML = "&#128512";
