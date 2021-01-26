@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Lab0</title>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <label>Text</label>
+    <input type="text" id="text" onkeyup="disableBtn()" />
+    <button type="button" id="emote" onclick="add()">Emote!</button>
+    <br />
+    <label>Size</label>
+    <input type="range" min="16" max="200" id="size" oninput="test()" />
+    <div id="emojis"></div>
+  </body>
+</html>
