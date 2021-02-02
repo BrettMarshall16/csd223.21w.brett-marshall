@@ -13,7 +13,7 @@
 function parseData() {
   let formData = Cookies.get();
   let list = document.querySelector("div.results ul");
-  for( const [name, value] of Object.entries(formData)){
+  for (const [name, value] of Object.entries(formData)) {
     let newItem = document.createElement("li");
     newItem.innerHTML = name + ": " + value;
     list.appendChild(newItem);
