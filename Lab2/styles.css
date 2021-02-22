@@ -1,30 +1,30 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    touch-action: none;
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  touch-action: none;
 }
-#canvis{
-    height: 50vh;
+#canvis {
+  height: 50vh;
 }
-#map{
-    height: 50vh;
+#map {
+  height: 50vh;
 }
 
-@media screen and ( orientation: landscape ) {
-    .container{
-        display: flex;
-        flex-direction: row;
-        height: auto;
-        touch-action: none;
-    }
-    #canvas{
-        width: 50%;
-        height: 100vh;
-    }
-    #map {
-        width: 50%;
-        height: 100vh;
-    }
- }
+@media screen and (orientation: landscape) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    touch-action: none;
+  }
+  #canvas {
+    width: 50%;
+    height: 100vh;
+  }
+  #map {
+    width: 50%;
+    height: 100vh;
+  }
+}
