@@ -1,0 +1,45 @@
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  padding: 30px;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  box-sizing: border-box;
+}
+img{
+    max-width: 100px;
+    max-height: 100px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+}
+
+#results {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+}
+.showresults{
+    display: none;
+}
+
+button{
+    position: relative;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+}
+
+.select-box {
+  position: relative;
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+  font-size: 18px;
+  color: #60666d;
+}
+  
