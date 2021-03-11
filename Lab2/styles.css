@@ -5,7 +5,7 @@
     margin: 0;
     touch-action: none;
 }
-#canvis{
+#canvas{
     height: 50vh;
 }
 #map{
