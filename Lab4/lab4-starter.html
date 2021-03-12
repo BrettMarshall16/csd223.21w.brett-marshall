@@ -1,0 +1,73 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>CSD223 Lab 4 Part 1</title>
+</head>
+<body>
+    <div class="box">This is a box</div>
+    <div class="box">This is another box</div>
+
+    <div id="greeting"></div>
+
+    <div id="template">
+        <h1>Copy Me</h1>
+        <p>This template div should get copied</p>
+        <p>The copy should go in #target</p>
+        <p>The copy should alert when clicked</p>
+        <p>But this template should NOT alert when clicked</p>
+    </div>
+
+    <div id="target"></div>
+
+    <!-- 1 Add your jQuery v3 script element here BEFORE the solution script element -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
+    <script>
+        //  Add your solutions to the remaining questions in the indicated spots below
+
+        // 2
+        window.addEventListener('load', onready);
+
+        function onready() {
+            
+
+            // 3
+            let boxes = $( ".box" );
+            console.log(boxes);
+
+            // 4
+            const createDiv = document.createElement("div");
+            createDiv.textContent = "Hello World!";
+            const theGreeting = $( "#greeting" )[ 0 ];
+            console.log(theGreeting);
+            theGreeting.appendChild(createDiv);
+
+            // 5
+            $( "#template" ).clone().removeAttr("id").click(() => {console.log("Clicked!")}).appendTo($( "#target" )[ 0 ]);
+
+            // 6
+            $( ".box" ).first().removeClass("box").addClass("notabox");
+            
+            // 7
+            $ ( "#template" ).find( "p" ).css("background-color", "red");
+
+            // 8
+            let el = $('#template p:nth-of-type(3)');
+            el.parent().find("h1").appendTo(el.parent().parent());;
+
+            // 9
+            let count = 0;
+            $( "p" ).each(function(index){$( this ).prepend(++count + " ")});
+
+            // 10
+            let array = [0,1,2,3,4,5,6,7,8,9,10];
+            $.each(array,function(index,result){console.log(result)});
+        }
+
+
+
+    </script>
+
+
+
+</body></html>
