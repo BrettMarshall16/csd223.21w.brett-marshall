@@ -17,6 +17,8 @@ function showGlassesXHR(){
     xhr.open('GET', 'https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list');
     xhr.onload = () =>{
         const data = JSON.parse(xhr.response);
+	console.log(xhr.responseText);
+	console.log(xhr.responseText["strGlass"]);
         for(let i = 1; i < data.drinks.length; i++){
             console.log(data.drinks[i].strGlass);
         }

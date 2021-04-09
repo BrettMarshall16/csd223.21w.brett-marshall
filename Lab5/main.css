@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    font-family: "Dosis", sans-serif;
+    background: #000;
+    color: #ee4292;
+}
+
+* {
+    box-sizing: border-box;
+    transition: all 200ms ease-in-out;
+}
+
+#width-wrap {
+    max-width: 1024px;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    background: #101;
+    border: 1px solid transparent;
+    padding-bottom: 100px;
+}
+
+header {
+    margin: 2em 2em;
+}
+
+#results {
+    display: flex;
+    flex-direction: column;
+}
+
+#results > div {
+    display: flex;
+    cursor: pointer;
+}
+#results > div:hover,
+#results > div.expanded {
+    background: #ee429220;
+}
+
+#results > div img {
+    display: block;
+    width: 100px;
+    object-fit: cover;
+    filter: saturate(0.4);
+}
+#results > div:hover img,
+#results > div.expanded img {
+    filter: saturate(1.1);
+}
+
+#results > div.expanded img {
+    width: 200px;
+}
+
+#results > div .info {
+    flex-grow: 1;
+    padding-bottom: 30px;
+}
+
+#results > div .name {
+    margin-top: 0.5em;
+    font-size: 32px;
+    letter-spacing: 6px;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+#results > div:hover .name,
+#results > div.expanded .name {
+    color: #ffb9d9;
+}
+
+#results > div .prop {
+    margin: 0.5em 30px;
+    display: flex;
+    align-items: baseline;
+}
+
+#results > div .prop-name {
+    text-transform: uppercase;
+    margin-right: 1em;    
+    color:
+    rgba(255,255,255,0.3);
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    width: 20%;
+}
+
+#results > div .prop-value {
+    width: 80%;
+}
+
+@media screen and ( max-width: 768px ) {
+    #results > div.expanded { flex-direction: column; }
+    #results > div.expanded img { width: 100%; height: 200px; }
+    #results > div .prop { flex-wrap: wrap; }
+    #results > div .prop-name { width: 100%; }
+    #results > div .prop-value { width: 100%; }
+}
+
+#results > div .ingredients ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+#results > div .details {
+    display: none;
+}
+#results > div.expanded .details {
+    display: block;
+}
+
+
+.ingredient-selector {
+    background-color: white;
+    border-radius: 3px;
+    padding: 0.2em 0.3em;
+    display: flex;
+}
+
+.ingredient-selector input {
+    border: none;
+    margin: -0.2em 0;
+    padding: 0.7em 0;
+}
+
+.ingredient-selector input:focus {
+    outline: none;
+}
+
+.ingredient-selector .selected-ingredient {
+    margin-right: 0.3em;
+    padding-left: 0.3em;
+
+    border: 1px solid #ee429255;
+    border-radius: 3px;
+}
+
+.ingredient-selector .selected-ingredient .remove {
+    border-left: 1px dashed #ee429255;
+    margin-left: 0.3em;
+}
+
+.ingredient-selector .selected-ingredient .remove::before {
+    content: "X";
+    color: #ee429255;
+    padding: 0 0.3em;
+    padding-right: 0.3em;
+}
+
+.ingredient-selector .selected-ingredient .remove:hover {
+    background-color: #ee429233;
+}
+.ingredient-selector .selected-ingredient .remove:hover::before {
+    color: #ee4292;
+}
+
+
+/*
+
+    The styles below are for the loader animation, copied from https://loading.io/css/
+
+*/
+
+.lds-ripple {
+    display: none !important;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ripple.active {
+    display: inline-block !important;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #ee4292;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}

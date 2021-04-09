@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CocktailDB Browser</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet"> 
+
+    
+    <script defer src="https://unpkg.com/vue@next"></script>
+    <script defer src="app.js"></script>
+
+</head>
+
+<body id="app">
+    <div id="width-wrap">
+        <header>
+            <h1>Cocktail DB Browser</h1>
+            <!-- TODO: replace the select control with this custom multi-select control -->
+            <label>Pick some ingredients
+                <div class="ingredient-selector" @change="onIngredientSelected()">
+                    <!-- TODO: this span must show all the selected ingredients -->
+                    <span class="selected-ingredient">
+                        <span v-for="selectedIngredient in selectedIngredients" class="remove" @click="deselectIngredient(selectedIngredient)">{{selectedIngredient}}</span> <!-- TODO: clicking this should deselected the ingredient -->
+                    </span>
+                    <!-- TODO: this input must add ingredients on chnage -->
+                    <input type="text" list="ingredient-list" v-model="ingredientSelectorText">
+                    <datalist id="ingredient-list">
+                        <!-- TODO: add all the ingredients as options -->
+                        <option v-for="ingredient in ingredients">{{ingredient}}</option>
+                    </datalist>
+                </div>
+            </label>
+            <!-- TODO: Delete from here ... -->
+            
+            <!-- TODO: ... to here -->
+        </header>
+
+        <div id="results">
+            <!-- TODO: This element should only appear if there are no results -->
+            <div v-if="selectedIngredients.length === 0 && results.length === 0 && isLoadingResults === false">There are no drinks that use all of the selected ingredients</div>
+            <div v-if="isLoadingResults" id="loader" class="lds-ripple active"><div></div><div></div></div>
+            <div v-for="r in results" class="result" :class="{ expanded: isExpanded(r.id) }" @click="handleResultClick(r.id)">
+                <img class="photo" :src="r.thumbURL + ( ! isExpanded(r.id) ? '/preview' : '' )">
+                <div class="info">
+                    <div class="summary">
+                        <div class="prop"><span class="prop-value">{{ r.name }}</span></div>
+                    </div>
+                    <div v-if="isLoadingDetailsFor(r.id)" id="loader" class="lds-ripple active"><div></div><div></div></div>
+                    <div v-if="isExpanded(r.id)" class="details">
+                        <div class="prop category">
+                            <span class="prop-name">category</span>
+                            <span class="prop-value">{{ expandedDrinkDetails.category + ' (' + (expandedDrinkDetails.isAlcoholic ? '' : 'Non-') + 'Alcoholic)' }}</span>
+                        </div>
+                        <div class="prop category"><span class="prop-name">glass</span><span class="prop-value">{{ expandedDrinkDetails.glass }}</span></div>
+                        <div class="prop category"><span class="prop-name">ingredients</span>
+                            <ul class="prop-value">
+                                <li v-for="i in expandedDrinkDetails.ingredients">
+                                    <span v-if="i.measure" class="measure">{{ i.measure }}</span>
+                                    <span class="ingredient">{{ i.ingredient }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="prop category"><span class="prop-name">instructions</span><span class="prop-value">{{ expandedDrinkDetails.instructions }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
