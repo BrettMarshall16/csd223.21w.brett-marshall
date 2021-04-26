@@ -22,13 +22,13 @@
             <h1>Cocktail DB Browser</h1>
             <!-- TODO: replace the select control with this custom multi-select control -->
             <label>Pick some ingredients
-                <div class="ingredient-selector" @change="onIngredientSelected()">
+                <div class="ingredient-selector">
                     <!-- TODO: this span must show all the selected ingredients -->
-                    <span class="selected-ingredient">
-                        <span v-for="selectedIngredient in selectedIngredients" class="remove" @click="deselectIngredient(selectedIngredient)">{{selectedIngredient}}</span> <!-- TODO: clicking this should deselected the ingredient -->
+                    <span v-for="selectedIngredient in selectedIngredients"  class="selected-ingredient">
+                        {{selectedIngredient}}<span class="remove" @click="deselectIngredient(selectedIngredient)"></span> <!-- TODO: clicking this should deselected the ingredient -->
                     </span>
                     <!-- TODO: this input must add ingredients on chnage -->
-                    <input type="text" list="ingredient-list" v-model="ingredientSelectorText">
+                    <input type="text" list="ingredient-list" @change="onIngredientSelected()" v-model="ingredientSelectorText">
                     <datalist id="ingredient-list">
                         <!-- TODO: add all the ingredients as options -->
                         <option v-for="ingredient in ingredients">{{ingredient}}</option>

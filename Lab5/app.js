@@ -48,18 +48,37 @@ const Cocktails = {
     
             // TODO: Get all the drinks that contain ALL of the selected ingredients
             
-            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + encodeURIComponent(this.selectedIngredients));
-        
-            if ( ! response.ok ) {
-                console.log(new Error("Something went wrong"));
-                return;
+            let combinedResults = [];
+            for ( const ingredient of this.selectedIngredients ) {
+
+                const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + encodeURIComponent(ingredient));
+            
+                if ( ! response.ok ) {
+                    console.log(new Error("Something went wrong"));
+                    return;
+                }
+            
+                const data = await response.json();
+
+                const results = data.drinks.map( e => this.makeDrinkSummaryFrom(e) );
+
+                // Only keep drinks that appear in ALL result sets
+                if ( combinedResults.length === 0 ) {
+                    combinedResults = results;
+                } else {
+                    let oldResults = combinedResults;
+                    combinedResults = [];
+                    for ( const r of results ) {
+                        if ( oldResults.find( old => old.id === r.id ) ) {
+                            combinedResults.push(r);
+                        }
+                    }
+                }
+                
             }
-        
-            const data = await response.json();
             
             // Convert the drinks array into our own drink objects (see makeDrinkSummaryFrom(..) below)
-            temparray = data.drinks.map( e => this.makeDrinkSummaryFrom(e) );
-            this.results = [...new set([...this.results,...temparray])];
+            this.results = combinedResults;
         
             this.isLoadingResults = false;
             
@@ -102,7 +121,7 @@ const Cocktails = {
 
         deselectIngredient: async function(selectedIngredient){
             let theIndex = this.selectedIngredients.indexOf(selectedIngredient);
-            delete this.selectedIngredients[theIndex];
+            this.selectedIngredients.splice(theIndex, 1);
             this.searchByIngredients();
         },
     
